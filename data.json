@@ -1,0 +1,51 @@
+{
+  "meta": {
+    "cpr_goal": 30,
+    "review_frequency": "semanal",
+    "empreendimentos": ["Adore Cacupé 205", "Smart Nova Cachoeira", "Cacupé Promoção", "Apartamento BC", "Adore Spot JNC"]
+  },
+  "periodos": [
+    {
+      "id": "2026-01",
+      "label": "Jan 2026",
+      "tipo": "mensal",
+      "importado_em": "2026-01-31",
+      "campanhas": [
+        {"nome": "Adore Cacupé 205 [whats]", "empreendimento": "Adore Cacupé 205", "canal": "whatsapp", "gasto": 1480, "leads": 52, "cpr": 28.46, "cpm": 34.20, "impressoes": 43274, "alcance": 18900, "status": "ativo"},
+        {"nome": "Smart Nova Cachoeira [whats]", "empreendimento": "Smart Nova Cachoeira", "canal": "whatsapp", "gasto": 1860, "leads": 58, "cpr": 32.07, "cpm": 38.10, "impressoes": 48820, "alcance": 21300, "status": "ativo"},
+        {"nome": "Cacupé Promoção [whats]", "empreendimento": "Cacupé Promoção", "canal": "whatsapp", "gasto": 2215, "leads": 71, "cpr": 31.20, "cpm": 32.50, "impressoes": 68154, "alcance": 29800, "status": "ativo"},
+        {"nome": "Cacupé Promoção [forms]", "empreendimento": "Cacupé Promoção", "canal": "forms", "gasto": 0, "leads": 0, "cpr": null, "cpm": null, "impressoes": 0, "alcance": 0, "status": "pausado"},
+        {"nome": "Adore Spot JNC [forms]", "empreendimento": "Adore Spot JNC", "canal": "forms", "gasto": 720, "leads": 26, "cpr": 27.69, "cpm": 30.10, "impressoes": 23920, "alcance": 10400, "status": "ativo"}
+      ]
+    },
+    {
+      "id": "2026-02",
+      "label": "Fev 2026",
+      "tipo": "mensal",
+      "importado_em": "2026-02-28",
+      "campanhas": [
+        {"nome": "Adore Cacupé 205 [whats]", "empreendimento": "Adore Cacupé 205", "canal": "whatsapp", "gasto": 1650, "leads": 61, "cpr": 27.05, "cpm": 33.80, "impressoes": 48817, "alcance": 21200, "status": "ativo"},
+        {"nome": "Smart Nova Cachoeira [whats]", "empreendimento": "Smart Nova Cachoeira", "canal": "whatsapp", "gasto": 2290, "leads": 64, "cpr": 35.78, "cpm": 40.20, "impressoes": 56965, "alcance": 24800, "status": "ativo"},
+        {"nome": "Cacupé Promoção [whats]", "empreendimento": "Cacupé Promoção", "canal": "whatsapp", "gasto": 1293, "leads": 57, "cpr": 22.68, "cpm": 29.91, "impressoes": 43229, "alcance": 18800, "status": "ativo"},
+        {"nome": "Cacupé Promoção [forms]", "empreendimento": "Cacupé Promoção", "canal": "forms", "gasto": 1287, "leads": 44, "cpr": 29.25, "cpm": 23.34, "impressoes": 55138, "alcance": 24000, "status": "ativo"},
+        {"nome": "Adore Spot JNC [forms]", "empreendimento": "Adore Spot JNC", "canal": "forms", "gasto": 895, "leads": 31, "cpr": 28.87, "cpm": 33.55, "impressoes": 26700, "alcance": 11600, "status": "ativo"}
+      ]
+    },
+    {
+      "id": "2026-03",
+      "label": "Mar 2026",
+      "tipo": "mensal",
+      "importado_em": "2026-03-26",
+      "campanhas": [
+        {"nome": "Adore Cacupé 205 [whats]", "empreendimento": "Adore Cacupé 205", "canal": "whatsapp", "gasto": 1067, "leads": 55, "cpr": 19.40, "cpm": 37.91, "impressoes": 28154, "alcance": 12200, "status": "ativo"},
+        {"nome": "Adore Cacupé 205 [forms]", "empreendimento": "Adore Cacupé 205", "canal": "forms", "gasto": 967, "leads": 21, "cpr": 46.04, "cpm": 22.23, "impressoes": 43490, "alcance": 18900, "status": "pausado"},
+        {"nome": "Smart Nova Cachoeira [whats]", "empreendimento": "Smart Nova Cachoeira", "canal": "whatsapp", "gasto": 1388, "leads": 38, "cpr": 36.53, "cpm": 43.05, "impressoes": 32245, "alcance": 14000, "status": "ativo"},
+        {"nome": "Smart Nova Cachoeira [forms]", "empreendimento": "Smart Nova Cachoeira", "canal": "forms", "gasto": 1209, "leads": 32, "cpr": 37.78, "cpm": 29.36, "impressoes": 41181, "alcance": 17900, "status": "ativo"},
+        {"nome": "Cacupé Promoção [whats]", "empreendimento": "Cacupé Promoção", "canal": "whatsapp", "gasto": 1293, "leads": 57, "cpr": 22.68, "cpm": 29.91, "impressoes": 43229, "alcance": 18800, "status": "ativo"},
+        {"nome": "Cacupé Promoção [forms]", "empreendimento": "Cacupé Promoção", "canal": "forms", "gasto": 1287, "leads": 44, "cpr": 29.25, "cpm": 23.34, "impressoes": 55138, "alcance": 24000, "status": "ativo"},
+        {"nome": "Apartamento BC [whats]", "empreendimento": "Apartamento BC", "canal": "whatsapp", "gasto": 40, "leads": 4, "cpr": 10.12, "cpm": 48.25, "impressoes": 829, "alcance": 362, "status": "ativo"},
+        {"nome": "Adore Spot JNC [forms]", "empreendimento": "Adore Spot JNC", "canal": "forms", "gasto": 895, "leads": 31, "cpr": 28.87, "cpm": 33.55, "impressoes": 26700, "alcance": 11600, "status": "ativo"}
+      ]
+    }
+  ]
+}
