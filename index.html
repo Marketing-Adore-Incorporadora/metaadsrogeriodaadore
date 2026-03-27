@@ -1,0 +1,87 @@
+includes('observa')) hmap.observacao=i;
+  });
+  const pb = s => parseFloat((s||'').replace(/[^\d,.-]/g,'').replace(',','.'))||0;
+  const toISO = s => {
+    if(!s) return '';
+    const parts = s.trim().split(/[\/\-]/);
+    if(parts.length===3){
+      if(parts[0].length===4) return s.replace(/\//g,'-');
+      return `${parts[2]}-${parts[1].padStart(2,'0')}-${parts[0].padStart(2,'0')}`;
+    }
+    return s;
+  };
+  parsedRows = lines.slice(hi+1).map(line=>{
+    const v = line.split(sep).map(x=>x.trim().replace(/"/g,''));
+    const prod = normProd(v[hmap.produto]||'');
+    return {
+      inicio: toISO(v[hmap.inicio]||''),
+      campanha: v[hmap.campanha]||'',
+      conjunto: v[hmap.conjunto]||'',
+      localizacao: v[hmap.localizacao]||'',
+      tipo_criativo: v[hmap.tipo_criativo]||'',
+      produto: prod,
+      resultado: parseInt(v[hmap.resultado])||0,
+      captacao: (v[hmap.captacao]||'').toLowerCase(),
+      valor_usado: pb(v[hmap.valor_usado]),
+      cpl: pb(v[hmap.cpl]),
+      orcamento_dia: pb(v[hmap.orcamento_dia]),
+      valor_total: pb(v[hmap.valor_total]||v[hmap.valor_usado]),
+      impressoes: parseInt((v[hmap.impressoes]||'').replace(/\D/g,''))||0,
+      status: (v[hmap.status]||'').toLowerCase(),
+      observacao: v[hmap.observacao]||''
+    };
+  }).filter(r=>r.campanha||r.produto);
+
+  document.getElementById('dzOk').style.display='block';
+  document.getElementById('dzOk').textContent = fname+' — '+parsedRows.length+' linhas detectadas';
+  document.getElementById('pvWrap').style.display='block';
+  document.getElementById('pvHead').innerHTML='<tr><th>Início</th><th>Campanha</th><th>Produto</th><th>Leads</th><th>CPL</th><th>Gasto</th></tr>';
+  document.getElementById('pvBody').innerHTML=parsedRows.slice(0,5).map(c=>`<tr><td>${fmtDate(c.inicio)}</td><td>${c.campanha.substring(0,30)}</td><td>${c.produto}</td><td>${c.resultado}</td><td style="color:${cplC(c.cpl)}">${brl(c.cpl)}</td><td>${brl(c.valor_usado,0)}</td></tr>`).join('');
+  if(!document.getElementById('mLabel').value){
+    const d=new Date(document.getElementById('mData').value);
+    document.getElementById('mLabel').value=d.toLocaleString('pt-BR',{month:'long',year:'numeric'});
+  }
+}
+
+function saveImport() {
+  const label=document.getElementById('mLabel').value.trim();
+  const tipo=document.getElementById('mTipo').value;
+  const dataI=document.getElementById('mData').value;
+  const dataF=document.getElementById('mDataFim').value;
+  if(!label){toast('Informe o rótulo do período','err');return;}
+  if(!parsedRows){toast('Selecione um arquivo CSV primeiro','err');return;}
+  const id='p-'+dataI.replace(/-/g,'');
+  if(DB.periodos.find(p=>p.id===id)){if(!confirm('Substituir período existente?'))return;DB.periodos=DB.periodos.filter(p=>p.id!==id);}
+  const prods={};
+  parsedRows.forEach(c=>{
+    const p=c.produto||'Sem produto';
+    if(!prods[p]) prods[p]={produto:p,leads_total:0,whatsapp:0,formulario:0,clique:0,gasto_total:0,orcamento_dia:0,orcamento_dia_ativo:0};
+    prods[p].leads_total+=c.resultado;
+    if(c.captacao==='whatsapp') prods[p].whatsapp+=c.resultado;
+    else if(c.captacao==='formulario') prods[p].formulario+=c.resultado;
+    else prods[p].clique+=c.resultado;
+    prods[p].gasto_total+=c.valor_usado;
+    prods[p].orcamento_dia+=c.orcamento_dia;
+    if(c.status==='ativo') prods[p].orcamento_dia_ativo+=c.orcamento_dia;
+  });
+  const resumo=Object.values(prods).map(p=>({...p,cpl_medio:p.leads_total>0?p.gasto_total/p.leads_total:0}));
+  DB.periodos.push({id,label,tipo,periodo_inicio:dataI,periodo_fim:dataF,importado_em:dataI,resumo_produtos:resumo,campanhas:parsedRows});
+  DB.periodos.sort((a,b)=>a.id.localeCompare(b.id));
+  syncP();saveLocal();initSelects();renderAll();
+  closeModal();
+  toast('Período "'+label+'" salvo!','ok');
+}
+
+const dz=document.getElementById('dz');
+dz.addEventListener('dragover',e=>{e.preventDefault();dz.classList.add('drag');});
+dz.addEventListener('dragleave',()=>dz.classList.remove('drag'));
+dz.addEventListener('drop',e=>{
+  e.preventDefault();dz.classList.remove('drag');
+  const f=e.dataTransfer.files[0];
+  if(f){const r=new FileReader();r.onload=ev=>processCSV(ev.target.result,f.name);r.readAsText(f,'UTF-8');}
+});
+
+loadDB();
+</script>
+</body>
+</html>
